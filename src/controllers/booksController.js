@@ -29,22 +29,17 @@ exports.editBook = async (req, res) => {
 
 // Actualizar un libro
 exports.updateBook = async (req, res) => {
-  const { title, author, publisher, year, genre, location, status, rating, comment } = req.body;
+  const { status, rating, comment } = req.body;
+
   await Book.update({
-    title,
-    author,
-    publisher,
-    year,
-    genre,
-    location,
-    status,
-    rating,
-    comment
+    status
   }, {
     where: { id: req.params.id }
   });
-  res.redirect('/'); // Redirige a la página principal después de actualizar el libro
+  res.redirect('/');
 };
+
+
 // Eliminar un libro
 exports.deleteBook = async (req, res) => {
   const bookId = req.params.id;

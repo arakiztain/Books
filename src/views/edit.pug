@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Editar Libro
+    link(rel="stylesheet", href="/style.css")
+  body
+    h1 Editar Libro
+    form(action=`/update/${book.id}` method="POST")
+      label(for="status") Estado
+      select(name="status")
+        option(value="pendiente" selected=book.status == 'pendiente' ? true : null) Pendiente
+        option(value="leyendo" selected=book.status == 'leyendo' ? true : null) Leyendo
+        option(value="leído" selected=book.status == 'leído' ? true : null) Leído
+      button(type="submit") Actualizar Libro
