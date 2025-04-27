@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql2');
-const { Sequelize } = require('sequelize');
+const sequelize = require('./app/config/database'); // Importa la instancia de sequelize
 const app = express();
 
-// Configuración de la base de datos MySQL
-const sequelize = new Sequelize('biblioteca', 'root', 'miNuevaContraseña', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+// Verificar conexión a la base de datos
+sequelize.authenticate()
+  .then(() => {
+    console.log('✅ Conexión a la base de datos establecida correctamente');
+  })
+  .catch(err => {
+    console.error('❌ Error al conectar a la base de datos:', err.message);
+  });
 
 // Configurar Pug como motor de plantillas
 app.set('view engine', 'pug');
@@ -26,6 +28,14 @@ app.post('/add', booksController.addBook);
 app.get('/edit/:id', booksController.editBook);
 app.post('/update/:id', booksController.updateBook);
 app.get('/delete/:id', booksController.deleteBook);
+
+// Ruta GET para mostrar el formulario de agregar libro
+app.get('/add', (req, res) => {
+  res.render('addBook');  // Asegúrate de que tienes una vista 'addBook.pug'
+});
+
+// Ruta POST para agregar el libro
+app.post('/add', booksController.addBook);
 
 // Puerto de escucha
 app.listen(3000, () => {

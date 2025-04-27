@@ -1,0 +1,24 @@
+// addBook.pug
+form(action='/add', method='POST')
+  label(for='title') Título:
+  input(type='text', name='title', required=true)
+
+  label(for='author') Autor:
+  input(type='text', name='author', required=true)
+
+  label(for='publisher') Editorial:
+  input(type='text', name='publisher')
+
+  label(for='year') Año:
+  input(type='number', name='year')
+
+  label(for='genre') Género:
+  input(type='text', name='genre')
+
+  label(for='location') Ubicación:
+  input(type='text', name='location')
+
+  label(for='status') Estado:
+  input(type='text', name='status')
+
+  button(type='submit') Agregar Libro
