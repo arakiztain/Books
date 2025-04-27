@@ -21,13 +21,6 @@ User.init({
   timestamps: true  // Si deseas campos como createdAt y updatedAt
 });
 
-// Hook para hashear la contraseña antes de guardar el usuario
-User.beforeCreate(async (user) => {
-  if (user.password) {
-    user.password = await bcrypt.hash(user.password, 10);  // 10 es el número de rondas de salt
-  }
-});
-
 // Método para verificar la contraseña
 User.prototype.validPassword = async function(password) {
   return await bcrypt.compare(password, this.password);  // Compara la contraseña ingresada con la almacenada
