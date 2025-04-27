@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title Biblioteca Personal
+    link(rel="stylesheet", href="/style.css")
+  body
+    h1 Mi Biblioteca Personal
+    a(href="/add") Agregar Libro
+    table
+      thead
+        tr
+          th Título
+          th Autor
+          th Género
+          th Estado
+          th Acción
+      tbody
+        each book in books
+          tr
+            td= book.title
+            td= book.author
+            td= book.genre
+            td= book.status
+            td
+              a(href="/edit/#{book.id}") Editar
+              | 
+              a(href="/delete/#{book.id}") Eliminar

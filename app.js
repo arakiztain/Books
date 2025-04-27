@@ -5,7 +5,7 @@ const { Sequelize } = require('sequelize');
 const app = express();
 
 // Configuración de la base de datos MySQL
-const sequelize = new Sequelize('biblioteca', 'root', 'password', {
+const sequelize = new Sequelize('biblioteca', 'root', 'miNuevaContraseña', {
   host: 'localhost',
   dialect: 'mysql'
 });
