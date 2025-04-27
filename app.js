@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
-const sequelize = require('./app/config/database'); // Importa la instancia de sequelize
+const sequelize = require('./src/config/database'); // Conexión con la base de datos
+const booksRoutes = require('./src/routes/booksRoutes'); // Rutas de libros
 const app = express();
 
 // Verificar conexión a la base de datos
@@ -14,28 +15,15 @@ sequelize.authenticate()
 
 // Configurar Pug como motor de plantillas
 app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'app/views'));
+app.set('views', path.join(__dirname, 'src/views'));  // Ruta a las vistas en 'src/views'
 
 // Middleware para parsear los datos de los formularios
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rutas
-const booksController = require('./app/controllers/booksController');
-app.get('/', booksController.index);
-app.post('/add', booksController.addBook);
-app.get('/edit/:id', booksController.editBook);
-app.post('/update/:id', booksController.updateBook);
-app.get('/delete/:id', booksController.deleteBook);
-
-// Ruta GET para mostrar el formulario de agregar libro
-app.get('/add', (req, res) => {
-  res.render('addBook');  // Asegúrate de que tienes una vista 'addBook.pug'
-});
-
-// Ruta POST para agregar el libro
-app.post('/add', booksController.addBook);
+// Usar las rutas de libros
+app.use('/', booksRoutes);
 
 // Puerto de escucha
 app.listen(3000, () => {
