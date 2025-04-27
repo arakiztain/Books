@@ -18,6 +18,6 @@ router.get('/edit/:id', booksController.editBook);
 router.post('/update/:id', booksController.updateBook);
 
 // Ruta para eliminar un libro
-router.get('/delete/:id', booksController.deleteBook);
+router.post('/delete/:id', booksController.deleteBook);
 
 module.exports = router;

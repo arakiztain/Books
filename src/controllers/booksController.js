@@ -45,11 +45,13 @@ exports.updateBook = async (req, res) => {
   });
   res.redirect('/'); // Redirige a la página principal después de actualizar el libro
 };
-
 // Eliminar un libro
 exports.deleteBook = async (req, res) => {
+  const bookId = req.params.id;
+
   await Book.destroy({
-    where: { id: req.params.id }
+    where: { id: bookId }
   });
-  res.redirect('/'); // Redirige a la página principal después de eliminar el libro
+
+  res.redirect('/');
 };

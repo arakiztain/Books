@@ -22,6 +22,7 @@ html
             td= book.genre
             td= book.status
             td
-              a(href="/edit/#{book.id}") Editar
+              a(href=`/edit/${book.id}`) Editar
               | 
-              a(href="/delete/#{book.id}") Eliminar
+              form(action=`/delete/${book.id}` method="POST")
+                button(type="submit") Eliminar
