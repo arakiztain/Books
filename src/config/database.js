@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize('biblioteca', 'root', '12345', {
   host: 'localhost',
   dialect: 'mysql',
-  logging: false // Desactivar el logging de las consultas SQL
+  logging: false
 });
 
 module.exports = sequelize;

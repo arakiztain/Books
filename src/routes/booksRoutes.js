@@ -1,23 +1,35 @@
 const express = require('express');
 const router = express.Router();
 const booksController = require('../controllers/booksController');
+const { authenticateToken } = require('../middleware/authMiddleware');
 
-// Ruta para mostrar todos los libros (Página principal)
+
 router.get('/', booksController.index);
 
-// Ruta GET para mostrar el formulario de agregar libro
-router.get('/add', (req, res) => {
-  res.render('addBook');  // Renderiza la vista 'addBook.pug'
+
+router.get('/add', authenticateToken, (req, res) => {
+  if (!req.user) {
+    return res.redirect('/auth/login');
+  }
+  res.render('addBook');
 });
 
-// Ruta POST para agregar un libro
-router.post('/add', booksController.addBook);
 
-// Ruta para editar un libro
-router.get('/edit/:id', booksController.editBook);
-router.post('/update/:id', booksController.updateBook);
+router.get('/logout', authenticateToken, (req, res) => {
 
-// Ruta para eliminar un libro
-router.post('/delete/:id', booksController.deleteBook);
+  res.clearCookie('token');
+  res.redirect('/');
+
+});
+
+
+router.post('/add', authenticateToken, booksController.addBook);
+
+
+router.get('/edit/:id', authenticateToken, booksController.editBook);
+router.post('/update/:id', authenticateToken, booksController.updateBook);
+
+
+router.post('/delete/:id', authenticateToken, booksController.deleteBook);
 
 module.exports = router;

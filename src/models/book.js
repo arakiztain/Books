@@ -41,10 +41,19 @@ const Book = sequelize.define('Book', {
   },
   comment: {
     type: DataTypes.TEXT
+  },
+  userId: {  
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'users', 
+      key: 'id'
+    },
+    onDelete: 'CASCADE'
   }
 }, {
   tableName: 'books',
-  timestamps: false
+  timestamps: true 
 });
 
 module.exports = Book;

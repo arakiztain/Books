@@ -5,7 +5,11 @@ html
     link(rel="stylesheet", href="/style.css")
   body
     h1 Mi Biblioteca Personal
-    a(href="/add") Agregar Libro
+
+    // Mostrar el botón "Agregar Libro" solo si hay un usuario logueado
+    if user
+      a(href="/add") Agregar Libro
+
     table
       thead
         tr
@@ -24,5 +28,14 @@ html
             td
               a(href=`/edit/${book.id}`) Editar
               | 
-              form(action=`/delete/${book.id}` method="POST")
+              form(action=`/delete/${book.id}` method="POST" style="display:inline;")
                 button(type="submit") Eliminar
+
+    // Mostrar el nombre de usuario si está logueado, o los botones de inicio de sesión y registro si no lo está
+    if user
+      //p Bienvenido, #{user.username}!
+      a(href="/auth/logout") Cerrar sesión
+    else
+      a(href="/auth/login") Iniciar sesión
+      |
+      a(href="/auth/register") Registrarse

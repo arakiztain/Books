@@ -1,10 +1,14 @@
 const express = require('express');
 const path = require('path');
 const sequelize = require('./src/config/database');
-const booksRoutes = require('./src/routes/booksRoutes'); // Rutas de libros
-const authRoutes = require('./src/routes/authRoutes'); // Rutas de autenticación
+const booksRoutes = require('./src/routes/booksRoutes');
+const authRoutes = require('./src/routes/authRoutes');
 const app = express();
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
 
 // Verificar conexión a la base de datos
 sequelize.authenticate()
@@ -25,8 +29,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Usar las rutas
-app.use('/', booksRoutes);  // Rutas de libros
-app.use('/auth', authRoutes);  // Rutas de autenticación (registro/login)
+app.use('/', booksRoutes);
+app.use('/auth', authRoutes);
 
 // Puerto de escucha
 app.listen(3000, () => {

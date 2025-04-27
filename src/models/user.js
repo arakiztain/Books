@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
-const sequelize = require('../config/database'); // Reemplaza con tu configuración de base de datos
+const sequelize = require('../config/database');
 
 class User extends Model {}
 
@@ -18,12 +18,12 @@ User.init({
   sequelize,
   modelName: 'User',
   tableName: 'users',
-  timestamps: true  // Si deseas campos como createdAt y updatedAt
+  timestamps: true
 });
 
 // Método para verificar la contraseña
 User.prototype.validPassword = async function(password) {
-  return await bcrypt.compare(password, this.password);  // Compara la contraseña ingresada con la almacenada
+  return await bcrypt.compare(password, this.password);
 };
 
 module.exports = User;
