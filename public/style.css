@@ -1,28 +1,71 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-  }
-  
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-  
-  a {
-    text-decoration: none;
-    color: blue;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa; /* Color de fondo claro */
+}
+
+h1 {
+  text-align: center;
+  color: #333; /* Color más suave para el encabezado */
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* Fondo blanco para la tabla */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para la tabla */
+}
+
+table, th, td {
+  border: 1px solid #dee2e6; /* Color de borde más suave */
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-size: 1rem; /* Tamaño de fuente para una mejor legibilidad */
+}
+
+th {
+  color: black;
+}
+
+
+td {
+  background-color: #f9f9f9; /* Fondo gris claro para las celdas */
+}
+
+a {
+  text-decoration: none;
+  color: #007bff; /* Color azul para los enlaces */
+  font-weight: bold; /* Para destacar los enlaces */
+}
+
+a:hover {
+  text-decoration: underline; /* Subrayado cuando el mouse pasa por encima */
+}
+
+button {
+  background-color: #007bff; /* Fondo azul para botones */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición para suavizar el cambio de color */
+}
+
+button:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+}
+
+form {
+  display: inline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
