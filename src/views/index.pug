@@ -37,10 +37,10 @@ html
                 //-     option(value="5", selected=book.rating == 5) 5 ⭐
                 //-   button(type="submit", class="btn btn-outline-secondary btn-sm") Valorar
                 //- |
-                a(href=`/edit/${book.id}`, class="btn btn-warning btn-sm") Editar
-                |
-                form(action=`/delete/${book.id}`, method="POST", style="display:inline;")
-                  button(type="submit", class="btn btn-danger btn-sm") Eliminar
+                .d-flex.align-items-center.gap-2
+                  a(href=`/edit/${book.id}`, class="btn btn-warning btn-sm") Editar
+                  form(action=`/delete/${book.id}`, method="POST", class="m-0")
+                    button(type="submit", class="btn btn-danger btn-sm") Eliminar
 
       // Mostrar el nombre de usuario si está logueado, o los botones de inicio de sesión y registro si no lo está
       if user
